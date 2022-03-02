@@ -1,0 +1,27 @@
+kafka-lag-exporter {
+  reporters {
+    prometheus {
+    port=9090
+    }
+  }
+  lookup-table-size = 120
+  clusters = [
+    {
+      name = "a-cluster"
+      bootstrap-brokers = "20.126.71.149:9092"
+      topic-whitelist = [
+        "widgets-.+"
+      ]
+      consumer-properties = {
+        client.id = "consumer-client-id"
+      }
+      admin-client-properties = {
+        client.id = "admin-client-id"
+      }
+      labels = {
+        location = "ny"
+        zone = "us-east"
+      }
+    }
+  ]
+}
