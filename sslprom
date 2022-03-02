@@ -1,0 +1,41 @@
+kafka-lag-exporter {
+  reporters {
+    prometheus {
+    }
+  }
+  lookup-table-size = 120
+  clusters = [
+    {
+      name = "a-cluster"
+      bootstrap-brokers = "20.126.71.149:9092"
+      topic-whitelist = [
+        "widgets-.+"
+      ]
+      consumer-properties = {
+        client.id = "consumer-client-id"
+        security.protocol= "SSL"
+        ssl.endpoint.identification.algorithm = "https"
+        ssl.truststore.location=/etc/pki/ca-trust/extracted/java/cacerts
+        ssl.truststore.password=XXXX
+        ssl.keystore.location=/etc/security/kafka/broker.jks
+        ssl.keystore.password=XXXX
+        ssl.key.password=XXXX
+      }
+      admin-client-properties = {
+        client.id = "admin-client-id"
+        security.protocol= "SSL"
+        ssl.endpoint.identification.algorithm = "https"
+        ssl.truststore.location=/etc/pki/ca-trust/extracted/java/cacerts
+        ssl.truststore.password=XXXX
+        ssl.keystore.location=/etc/security/kafka/broker.jks
+        ssl.keystore.password=XXXX
+        ssl.key.password=XXXX
+    }
+      labels = {
+        location = "ny"
+        zone = "us-east"
+      }
+    }
+  ]
+}
+  
